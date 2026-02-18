@@ -1,6 +1,6 @@
 Flask==3.0.0
 opencv-python==4.9.0.80
 mediapipe==0.10.14
-spotipy==2.23.0
+spotipy==2.25.1
 python-dotenv==1.0.0
 numpy==1.26.3
