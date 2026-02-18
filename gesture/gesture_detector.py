@@ -117,8 +117,8 @@ class GestureDetector:
                 landmarks = hand_landmarks.landmark
                 fingers = self.fingers_up(landmarks)
                 
-                # Calculate hand center for swipe detection
-                hand_x = landmarks[9].x  # Use wrist landmark for tracking
+                # Calculate hand center for swipe detection (using wrist landmark)
+                hand_x = landmarks[0].x  # Wrist landmark for tracking
                 
                 # Detect specific gestures based on finger positions
                 if sum(fingers) == 5:
@@ -145,11 +145,13 @@ class GestureDetector:
         # Apply cooldown to prevent rapid repeated triggers
         current_time = time.time()
 
-        if gesture and (gesture != self.last_gesture or (current_time - self.last_time) > self.cooldown):
-            self.last_gesture = gesture
-            self.last_time = current_time
-            return frame, gesture
-
+        # Only trigger if it's a new gesture different from the last one, or cooldown has passed
+        if gesture and gesture != self.last_gesture:
+            if (current_time - self.last_time) > self.cooldown:
+                self.last_gesture = gesture
+                self.last_time = current_time
+                return frame, gesture
+        
         return frame, None
     
     def cleanup(self):

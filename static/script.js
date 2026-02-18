@@ -155,7 +155,7 @@ function updateGestureDisplay(gesture) {
     gestureIcon.innerHTML = `<span style="color: #1db954;">${icon}</span>`;
     
     // Update name
-    gestureName.textContent = gesture.replace('_', ' ');
+    gestureName.textContent = gesture.replace(/_/g, ' ');
     
     // Update feedback
     gestureFeedback.textContent = gestureDescriptions[gesture] || '';
