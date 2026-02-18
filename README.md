@@ -195,7 +195,7 @@ The application uses:
 - **Flask 3.0.0**
 - **OpenCV 4.9.0.80**
 - **MediaPipe 0.10.14**
-- **Spotipy 2.23.0**
+- **Spotipy 2.25.1**
 
 ## License
 
