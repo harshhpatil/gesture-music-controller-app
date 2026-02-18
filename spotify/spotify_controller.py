@@ -150,6 +150,29 @@ class SpotifyController:
         except Exception as e:
             return {"error": f"Unexpected error: {str(e)}", "action": "volume_down"}
     
+    def set_volume(self, volume_percent):
+        """
+        Set volume to a specific level.
+        
+        Args:
+            volume_percent: Volume level (0-100)
+            
+        Returns:
+            Dictionary with action result
+        """
+        if not self.is_authenticated():
+            return {"error": "Not authenticated"}
+        
+        try:
+            # Clamp volume to valid range
+            volume = max(0, min(100, int(volume_percent)))
+            self.sp.volume(volume)
+            return {"status": "success", "action": "set_volume", "volume": volume}
+        except spotipy.SpotifyException as e:
+            return {"error": str(e), "action": "set_volume"}
+        except Exception as e:
+            return {"error": f"Unexpected error: {str(e)}", "action": "set_volume"}
+    
     def get_current_track(self):
         """Get information about the currently playing track."""
         if not self.is_authenticated():
