@@ -33,3 +33,6 @@ coverage.xml
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# Spotify cache
+.spotify_cache

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gesture Music Controller</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🎵 Gesture Music Controller</h1>
+            <p class="subtitle">Control your music with hand gestures</p>
+        </header>
+
+        <!-- Authentication Status -->
+        <div class="auth-section">
+            <div id="auth-status" class="status-badge">Checking authentication...</div>
+            <button id="auth-button" class="btn btn-primary" style="display: none;">Connect to Spotify</button>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="main-grid">
+            <!-- Webcam Feed Section -->
+            <div class="card webcam-section">
+                <h2>📹 Camera Feed</h2>
+                <div class="video-container">
+                    <img id="video-feed" src="{{ url_for('video_feed') }}" alt="Camera Feed">
+                </div>
+                <div class="controls">
+                    <button id="start-camera" class="btn btn-success">Start Camera</button>
+                    <button id="stop-camera" class="btn btn-danger" disabled>Stop Camera</button>
+                </div>
+            </div>
+
+            <!-- Gesture Display Section -->
+            <div class="card gesture-section">
+                <h2>👋 Detected Gesture</h2>
+                <div class="gesture-display">
+                    <div id="gesture-icon" class="gesture-icon">
+                        <span class="icon-placeholder">?</span>
+                    </div>
+                    <div id="gesture-name" class="gesture-name">No gesture detected</div>
+                    <div id="gesture-feedback" class="gesture-feedback"></div>
+                </div>
+                
+                <!-- Gesture Guide -->
+                <div class="gesture-guide">
+                    <h3>Gesture Guide</h3>
+                    <ul>
+                        <li><strong>✋ Open Palm</strong> - Play</li>
+                        <li><strong>✊ Fist</strong> - Pause</li>
+                        <li><strong>👈 Swipe Left</strong> - Previous Track</li>
+                        <li><strong>👉 Swipe Right</strong> - Next Track</li>
+                        <li><strong>✌️ Two Fingers Up</strong> - Volume Up</li>
+                        <li><strong>🤘 Two Fingers Down</strong> - Volume Down</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Now Playing Section -->
+            <div class="card nowplaying-section">
+                <h2>🎶 Now Playing</h2>
+                <div class="track-info">
+                    <div id="track-name" class="track-name">No track playing</div>
+                    <div id="artist-name" class="artist-name">Connect to Spotify to see current track</div>
+                    <div id="album-name" class="album-name"></div>
+                </div>
+                <div class="playback-info">
+                    <div id="playback-status" class="playback-status"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Built with Flask, OpenCV, MediaPipe, and Spotify Web API</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
